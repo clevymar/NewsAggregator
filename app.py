@@ -42,16 +42,24 @@ def index():
 @app.route('/search')
 def search():
     query = request.args.get('q')
+    if query:
+        articles = []
+        for source, feed in RSS_FEEDS.items():
+            parsed_feed = feedparser.parse(feed)
+            entries = [(source, entry) for entry in parsed_feed.entries]
+            articles.extend(entries)
 
-    articles = []
-    for source, feed in RSS_FEEDS.items():
-        parsed_feed = feedparser.parse(feed)
-        entries = [(source, entry) for entry in parsed_feed.entries]
-        articles.extend(entries)
-
-    results = [article for article in articles if query.lower() in article[1].title.lower()]
+        results = [article for article in articles if query.lower() in article[1].title.lower()]
+    else:
+        results = []
 
     return render_template('search_results.html', articles=results, query=query)
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html', sources=RSS_FEEDS)
+
 
 
 if __name__ == '__main__':

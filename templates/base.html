@@ -2,16 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Soocer News Hub</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<header>
-    <h1>Soccer RSS News Aggregator</h1>
-    <form action="{{ url_for('search') }}" method="GET">
-        <input type="text" name="q" placeholder="Search For Keyword">
-        <button type="submit">Search</button>
-    </form>
-</header>
-{% block content %}{% endblock %}
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('search') }}">Search</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+        </ul>
+    </nav>
+    <div>
+        {% block content %}{% endblock %}
+    </div>
 </body>
 </html>

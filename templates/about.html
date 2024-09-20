@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<h2>About Us</h2>
+<p>Welcome to our RSS feed aggregator. Here you can find the latest news from various sources.</p>
+
+<h3>Sources</h3>
+<ul class="sources-list">
+    {% for source, url in sources.items() %}
+    <li>{{ source }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
