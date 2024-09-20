@@ -11,6 +11,12 @@ RSS_FEEDS = {
     'CNBC': 'https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069'
 }
 
+RSS_FEEDS = {"L'Equipe":"https://dwh.lequipe.fr/api/edito/rss?path=/Football/",
+             "Eye Football":"https://www.eyefootball.com/football_news.xml",
+             "4 4 2":"https://www.fourfourtwo.com/rss.xml",
+             
+}
+             
 
 @app.route('/')
 def index():
